@@ -13,13 +13,24 @@ Hearing loss simulation is based on clinical audiological data (ASHA/WHO classif
 
 ## Requirements
 
-- [Bun](https://bun.sh) runtime
+- Node.js 18+ or [Bun](https://bun.sh)
 - OpenAI-compatible API endpoint
 
 ## Installation
 
 ```bash
+# Using bun
 bun install
+
+# Or npm
+npm install
+
+# Or yarn
+yarn install
+```
+
+Then configure:
+```bash
 cp .env.example .env
 # Edit .env with your API settings
 ```
@@ -73,4 +84,4 @@ Then open http://localhost:3000 in your browser.
 
 ## License
 
-MIT
+WTFPL
