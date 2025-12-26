@@ -2,6 +2,10 @@
 
 A deaf simulator for LLMs. Degrades user input to simulate hearing loss before sending to an OpenAI-compatible API, testing how well language models can infer meaning from incomplete or garbled text.
 
+## Why
+
+This idea was born while I was at my Grandma's house for dinner. She is 95 years old, so she has a lot of hearing loss. My father and I discussed briefly how LLMs could manage hearing loss: can they infer like us humans? How well? And so, here we are.
+
 ## How It Works
 
 1. User enters a message
