@@ -1,0 +1,23 @@
+{
+  "name": "deafai",
+  "version": "1.0.0",
+  "description": "Deaf Simulator for LLMs - Simulates hearing loss by degrading prompts",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run index.ts",
+    "web": "bun run src/web-ui.ts",
+    "dev": "bun run src/web-ui.ts --dev",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "hono": "^4.11.3"
+  }
+}
