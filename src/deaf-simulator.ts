@@ -33,7 +33,8 @@ export class DeafSimulator {
   simulate(input: string): { original: string; degraded: string; lossPercentage: number } {
     const words = input.split(/\s+/);
     const degradedWords: string[] = [];
-    let droppedCount = 0;
+    // Track degradation: 0 = kept, 0.5 = garbled/partial, 1 = dropped
+    let totalLoss = 0;
 
     for (const word of words) {
       const action = this.decideAction(word);
@@ -41,15 +42,18 @@ export class DeafSimulator {
       switch (action) {
         case 'keep':
           degradedWords.push(word);
+          // No loss
           break;
         case 'garble':
           degradedWords.push(this.garbleWord(word));
+          totalLoss += 0.5; // 50% loss for garbled
           break;
         case 'partial':
           degradedWords.push(this.partialWord(word));
+          totalLoss += 0.7; // 70% loss for partial
           break;
         case 'drop':
-          droppedCount++;
+          totalLoss += 1; // 100% loss for dropped
           // Optionally add placeholder for severe levels
           if (this.level >= 7 && Math.random() < 0.3) {
             degradedWords.push('[...]');
@@ -60,13 +64,13 @@ export class DeafSimulator {
 
     const degraded = degradedWords.join(' ').replace(/\s+/g, ' ').trim();
     const lossPercentage = words.length > 0
-      ? Math.round((1 - degraded.split(/\s+/).filter(w => w !== '[...]').length / words.length) * 100)
+      ? Math.round((totalLoss / words.length) * 100)
       : 0;
 
     return {
       original: input,
       degraded,
-      lossPercentage: Math.max(0, lossPercentage)
+      lossPercentage: Math.max(0, Math.min(100, lossPercentage))
     };
   }
 
